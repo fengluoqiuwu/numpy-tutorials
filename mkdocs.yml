@@ -44,9 +44,15 @@ plugins:
       separator: '[\s\u200b\-]'
 
 nav:
-  - 引言: index.html
-  - 1. 安装 Numpy: # 1-Numpy_installation\
-     - 1.1 介绍: 1-Numpy_installation/index.html
+  - 引言: index.md
+  - 1 Numpy介绍与安装: # 1-Numpy_installation/
+    - 介绍: 1-Numpy_installation/index.md
+    - Part 1. Python 的选择与安装: 1-Numpy_installation/1-Python.md
+    - Part 2. Python 环境的配置: 1-Numpy_installation/2-Environment.md
+    - Part 3. Numpy 安装与介绍: 1-Numpy_installation/3-Numpy.md
+    - 视频讲座: 1-Numpy_installation/VideoLecture-1.md
+
+
 
 extra_css:
   - stylesheets/custom.css

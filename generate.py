@@ -1,8 +1,6 @@
-import argparse
-import os
-import subprocess
-import shutil
-import webbrowser
+import argparse, os, subprocess, shutil, webbrowser
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
 
 def clear_generate_files(folder_path):
     for root, dirs, files in os.walk(folder_path):
@@ -26,39 +24,74 @@ def clear_folder_contents(folder_path):
     except Exception as e:
         print(f"Error clearing contents of {folder_path}: {e}")
 
-def convert_notebooks_to_md(folder_path):
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            if file.endswith('.ipynb'):
-                ipynb_file = os.path.join(root, file)
-                try:
-                    subprocess.run(['jupyter', 'nbconvert', '--to', 'markdown', ipynb_file], check=True)
-                    subprocess.run(['jupyter', 'nbconvert', '--to', 'pdf', ipynb_file], check=True)
-                except subprocess.CalledProcessError as e:
-                    print(f"Error converting {ipynb_file}: {e}")
+def convert_notebook(ipynb_file):
+    try:
+        subprocess.run(['jupyter', 'nbconvert', '--to', 'markdown', ipynb_file], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(['jupyter', 'nbconvert', '--to', 'pdf', ipynb_file], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except subprocess.CalledProcessError as e:
+        print(f"Error converting {ipynb_file}: {e}")
 
-def copy_md_to_docs(temp_folder, output_folder):
-    for root, dirs, files in os.walk(temp_folder):
-        for file in files:
+def convert_notebooks(folder_path, recursion: bool = True):
+    print(folder_path)
+    ipynb_files = []
+
+    if recursion:
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                if file.endswith('.ipynb'):
+                    ipynb_files.append(os.path.join(root, file))
+    else:
+        for file in os.listdir(folder_path):
+            if file.endswith('.ipynb'):
+                ipynb_files.append(os.path.join(folder_path, file))
+
+    # 使用 tqdm 显示进度条
+    with ThreadPoolExecutor() as executor:
+        futures = {executor.submit(convert_notebook, ipynb_file): ipynb_file for ipynb_file in ipynb_files}
+        with tqdm(total=len(futures), desc="Converting Notebooks") as pbar:
+            for _ in as_completed(futures):
+                pbar.update(1)
+
+def copy_md_to_docs(source_folder, output_folder, recursion: bool = True):
+    if recursion:
+        for root, dirs, files in os.walk(source_folder):
+            for file in files:
+                if file.endswith('.md'):
+                    # 计算输出目录
+                    relative_path = os.path.relpath(root, source_folder)
+                    output_dir = os.path.join(output_folder, relative_path)
+
+                    # 创建输出目录（如果不存在）
+                    os.makedirs(output_dir, exist_ok=True)
+
+                    # 拷贝文件
+                    shutil.copy(os.path.join(root, file), os.path.join(output_dir, file))
+    else:
+        for file in os.listdir(source_folder):
             if file.endswith('.md'):
-                # 计算输出目录
-                relative_path = os.path.relpath(root, temp_folder)
-                output_dir = os.path.join(output_folder, relative_path)
 
                 # 创建输出目录（如果不存在）
-                os.makedirs(output_dir, exist_ok=True)
+                os.makedirs(output_folder, exist_ok=True)
 
                 # 拷贝文件
-                shutil.copy(os.path.join(root, file), os.path.join(output_dir, file))
-                print(f"Copied: {file} to {output_dir}")
+                shutil.copy(os.path.join(source_folder, file), os.path.join(output_folder, file))
 
 source_folder = os.path.join(os.getcwd(), '_sources')  # 源文件夹
 output_folder = os.path.join(os.getcwd(), 'docs')      # 目标输出文件夹
 html_folder = os.path.join(os.getcwd(), 'site')      # 目标输出文件夹
 
-def generate():
-    convert_notebooks_to_md(source_folder)
-    copy_md_to_docs(source_folder, output_folder)
+def generate(path):
+    if path == None:
+        convert_notebooks(source_folder)
+        copy_md_to_docs(source_folder, output_folder)
+    elif path == '.':
+        convert_notebooks(source_folder, recursion=False)
+        copy_md_to_docs(source_folder, output_folder, recursion=False)
+    else:
+        convert_notebooks(source_folder+path)
+        copy_md_to_docs(source_folder+path, output_folder+path)
 
 def clear():
     clear_generate_files(source_folder)
@@ -68,7 +101,8 @@ def clear():
 def build():
     try:
         # 调用 mkdocs build 命令
-        subprocess.run(['mkdocs', 'build'], check=True)
+        subprocess.run(['mkdocs', 'build'], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         print("MkDocs build completed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"Error occurred while building MkDocs: {e}")
@@ -91,16 +125,18 @@ def main():
     commands = ['auto', 'generate', 'clear', 'build', 'serve', 'open']
     parser = argparse.ArgumentParser(description="A command-line tool.")
     parser.add_argument('command', choices=commands, help="The command to execute.")
+    parser.add_argument('--path', type=str, help="An optional string parameter.")
 
     args = parser.parse_args()
 
     if args.command == 'auto':
-        clear()
-        generate()
+        if args.path is None:
+            clear()
+        generate(args.path)
         build()
         open()
     elif args.command == 'generate':
-        generate()
+        generate(args.path)
     elif args.command == 'clear':
         clear()
     elif args.command == 'build':
