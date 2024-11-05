@@ -1,0 +1,37 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+
+{% if "content.action.download" in features %}
+  <a href="{{ page.download_jpynb }}" download title="下载 Jupyter Notebook 文件" class="md-content__button md-icon">
+    {% set icon = "simple/jupyter" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </a>
+  <a href="{{ page.download_md }}" download title="下载 Markdown 文件" class="md-content__button md-icon">
+    {% set icon = "simple/markdown" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </a>
+  <a href="{{ page.download_pdf }}" download title="下载 pdf 文件" class="md-content__button md-icon">
+    {% set icon = "fontawesome/regular/file-pdf" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </a>
+{% endif %}
+{% if page.edit_url %}
+  {% if "content.action.edit" in features %}
+    <a href="{{ page.edit_url }}" title="{{ lang.t('action.edit') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.edit or "material/file-edit-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+  {% if "content.action.view" in features %}
+    {% if "/blob/" in page.edit_url %}
+      {% set part = "blob" %}
+    {% else %}
+      {% set part = "edit" %}
+    {% endif %}
+    <a href="{{ page.edit_url | replace(part, 'raw') }}" title="{{ lang.t('action.view') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.view or "material/file-eye-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+{% endif %}
