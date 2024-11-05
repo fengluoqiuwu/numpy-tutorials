@@ -1,11 +1,12 @@
 import argparse, os, subprocess, shutil, webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import pypandoc
 from tqdm import tqdm
 
 def clear_generate_files(folder_path):
     for root, dirs, files in os.walk(folder_path):
         for file in files:
-            if file.endswith('.md') or file.endswith('.pdf'):
+            if file.endswith('.md'):
                 file_path = os.path.join(root, file)
                 try:
                     os.remove(file_path)
@@ -27,8 +28,6 @@ def clear_folder_contents(folder_path):
 def convert_notebook(ipynb_file):
     try:
         subprocess.run(['jupyter', 'nbconvert', '--to', 'markdown', ipynb_file], check=True,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        subprocess.run(['jupyter', 'nbconvert', '--to', 'pdf', ipynb_file], check=True,
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError as e:
         print(f"Error converting {ipynb_file}: {e}")
@@ -58,7 +57,7 @@ def copy_md_to_docs(source_folder, output_folder, recursion: bool = True):
     if recursion:
         for root, dirs, files in os.walk(source_folder):
             for file in files:
-                if file.endswith('.md'):
+                if file.endswith(('.md', '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.svg')):
                     # 计算输出目录
                     relative_path = os.path.relpath(root, source_folder)
                     output_dir = os.path.join(output_folder, relative_path)
@@ -70,7 +69,7 @@ def copy_md_to_docs(source_folder, output_folder, recursion: bool = True):
                     shutil.copy(os.path.join(root, file), os.path.join(output_dir, file))
     else:
         for file in os.listdir(source_folder):
-            if file.endswith('.md'):
+            if file.endswith(('.md', '.png', '.jpg', '.jpeg', '.gif', '.bmp', '.svg')):
 
                 # 创建输出目录（如果不存在）
                 os.makedirs(output_folder, exist_ok=True)
@@ -99,6 +98,7 @@ def clear():
     clear_folder_contents(html_folder)
 
 def build():
+    clear_folder_contents(html_folder)
     try:
         # 调用 mkdocs build 命令
         subprocess.run(['mkdocs', 'build'], check=True,
