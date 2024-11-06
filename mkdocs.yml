@@ -52,6 +52,7 @@ nav:
     - Part 3. Numpy 安装与介绍: 1-Numpy_installation/3-Numpy.md
   - 2 Ndarray 基础: # 2-Ndarray_basic/
     - 介绍: 2-Ndarray_basic/index.md
+    - Part 1. ndarray 快速入门: 2-Ndarray_basic/1-ndarray-quickstart.md
   - 3 通用函数: # 3-Ufuncs/
     - 介绍: 3-Ufuncs/index.md
   - 4 数据类型: # 4-Dtypes/
