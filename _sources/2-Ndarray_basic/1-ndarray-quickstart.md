@@ -13,6 +13,7 @@
  - `ndarray` 的基本函数与运算
  - `ndarray` 的索引、切片和迭代器
  - `ndarray` 的引用、视图和拷贝
+ - `ndarray` 的形状、分割与堆叠
 
 
 ```python
@@ -81,20 +82,10 @@ np.array(c)
 
 
 ```python
-np.array(1, 2, 3, 4, 5, 6)
+# np.array(1, 2, 3, 4, 5, 6) # error
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    Cell In[158], line 1
-    ----> 1 np.array(1, 2, 3, 4, 5, 6)
-    
-
-    TypeError: array() takes from 1 to 2 positional arguments but 6 were given
-
+![array init error](images/1-err-array_init.png)
 
 ### 通过函数批量初始化
 
@@ -154,7 +145,7 @@ np.empty((1, 2))
 
 
 
-    array([[0.e+000, 5.e-324]])
+    array([[0., 0.]])
 
 
 
@@ -501,7 +492,7 @@ a
 
 
 ```python
-a [2]
+a[2]
 ```
 
 
@@ -549,6 +540,20 @@ a
 
 
     array([  0,   1, 100, 100, 100, 100,   6,   7,   8,   9,  10,  11])
+
+
+
+其中我们也可以通过输入相同形状的bool数组进行切片。
+
+
+```python
+a[a % 2 == 0]
+```
+
+
+
+
+    array([  0, 100, 100, 100, 100,   6,   8,  10])
 
 
 
@@ -814,3 +819,312 @@ print("b.flags.owndata:", b.flags.owndata)
 此时他们二者持有的是相互独立的数据。
 
 **注意:** Numpy 的 MaskedArray 在拷贝方面有众多bug，不建议使用。（其实它哪个方面都有众多bug）
+
+## `ndarray` 的形状、分割与堆叠
+
+我们通常将 `ndarray.shape` 的返回值称作 `ndarray` 的形状，对于一个 n 维的数组，其形状为一个 n 个元素的元组，其中第 i 个元素表示该数组在第 i 维的宽度。
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+arr
+```
+
+
+
+
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11]])
+
+
+
+
+### `ndarray` 的形状的操作
+
+我们可以通过`ndarray.shape`获取`ndarray`的形状，并且有多种改变其形状的操作。
+
+
+```python
+arr.shape
+```
+
+
+
+
+    (3, 4)
+
+
+
+#### 不改变原数组的操作
+
+**`ndarray.reshape`**
+
+我们可以通过`ndarray.reshape`返回当前数组在某个形状下的视图，而不改变原数组的顺序，他们共享一份数据。
+
+
+```python
+arr1 = arr.reshape(2, 6)
+arr1
+```
+
+
+
+
+    array([[ 0,  1,  2,  3,  4,  5],
+           [ 6,  7,  8,  9, 10, 11]])
+
+
+
+
+```python
+arr
+```
+
+
+
+
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11]])
+
+
+
+
+```python
+print("arr.shape:", arr.shape)
+print("arr1.shape:", arr1.shape)
+print("arr1.flags.owndata:", arr1.flags.owndata)
+```
+
+    arr.shape: (3, 4)
+    arr1.shape: (2, 6)
+    arr1.flags.owndata: False
+    
+
+
+```python
+arr[1,2] = 1000
+arr1
+```
+
+
+
+
+    array([[   0,    1,    2,    3,    4,    5],
+           [1000,    7,    8,    9,   10,   11]])
+
+
+
+**`ndarray.ravel`**
+
+`ndarray.ravel` 可以将数组展平为一维数组，其中的默认顺序按照C数组的顺序，也就是越靠后的索引变化越快。`ndarray.ravel`返回的是视图，也就是说其与原数组共享一份数据。
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+arr1 = arr.ravel()
+arr1
+```
+
+
+
+
+    array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
+
+
+
+
+```python
+arr1.flags.owndata
+```
+
+
+
+
+    False
+
+
+
+**`ndarray.T`**
+对于二维数组，`ndarray.T`可以返回其转置的视图，其与原数组共享一份数据。
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+arr1 = arr.T
+arr1
+```
+
+
+
+
+    array([[ 0,  4,  8],
+           [ 1,  5,  9],
+           [ 2,  6, 10],
+           [ 3,  7, 11]])
+
+
+
+
+```python
+arr1.flags.owndata
+```
+
+
+
+
+    False
+
+
+
+#### 改变原数组的操作
+
+**`ndarray.resize`**
+
+我们可以通过 `ndarray.resize` 改变当前数组的形状。
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+arr.resize(2, 6)
+arr
+```
+
+
+
+
+    array([[ 0,  1,  2,  3,  4,  5],
+           [ 6,  7,  8,  9, 10, 11]])
+
+
+
+### `ndarray` 的分割
+
+我们可以通过`np.array_split`将数组沿某个轴分割为几个部分。他需要输入三个参数，分别为要分割的数组、分割的位置和分割的坐标轴。
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+result = np.array_split(arr, 2, axis=1)
+result
+```
+
+
+
+
+    [array([[0, 1],
+            [4, 5],
+            [8, 9]]),
+     array([[ 2,  3],
+            [ 6,  7],
+            [10, 11]])]
+
+
+
+
+```python
+arr = np.arange(12).reshape(3, 4)
+result = np.array_split(arr, 2, axis=0)
+result
+```
+
+
+
+
+    [array([[0, 1, 2, 3],
+            [4, 5, 6, 7]]),
+     array([[ 8,  9, 10, 11]])]
+
+
+
+默认的分割并不会发生数据拷贝，分割后的数组并不拥有数据，他们持有相同的一份数据。
+
+
+```python
+result[0].flags.owndata
+```
+
+
+
+
+    False
+
+
+
+
+```python
+result[0][1,2] = 1000
+arr
+```
+
+
+
+
+    array([[   0,    1,    2,    3],
+           [   4,    5, 1000,    7],
+           [   8,    9,   10,   11]])
+
+
+
+### `ndarray`的堆叠
+
+我们可以通过`np.concatenate`进行数组的堆叠，他与原数组持有不同的数据，相当于执行了拷贝。它需要输入两个参数，分别是堆叠的参数列表和堆叠的坐标轴。这里需要注意的是，除了堆叠的坐标轴外其余坐标轴形状要求相等，这里不考虑“广播”特性。
+
+
+```python
+arr1 = np.arange(12).reshape(3, 4)
+arr2 = arr1.copy()
+arr = np.concatenate((arr1, arr2), axis=1)
+arr
+```
+
+
+
+
+    array([[ 0,  1,  2,  3,  0,  1,  2,  3],
+           [ 4,  5,  6,  7,  4,  5,  6,  7],
+           [ 8,  9, 10, 11,  8,  9, 10, 11]])
+
+
+
+
+```python
+arr = np.concatenate((arr1, arr2), axis=0)
+arr
+```
+
+
+
+
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11],
+           [ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11]])
+
+
+
+
+```python
+arr[1,2] = 1000
+arr1
+```
+
+
+
+
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11]])
+
+
+
+
+```python
+print("arr.flags.owndata:", arr.flags.owndata)
+```
+
+    arr.flags.owndata: True
+    

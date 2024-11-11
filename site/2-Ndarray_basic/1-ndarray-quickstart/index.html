@@ -14,7 +14,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../3-Ufuncs/">
+        <link rel="next" href="../1-task/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Part 1. ndarray 快速入门 - Numpy 教程</title>
+        <title>课程讲义 - Numpy 教程</title>
       
     
     
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Part 1. ndarray 快速入门
+              课程讲义
             
           </span>
         </div>
@@ -477,6 +477,43 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Part 1. ndarray 快速入门
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Part 1. ndarray 快速入门
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -489,7 +526,7 @@
           
   
   <span class="md-ellipsis">
-    Part 1. ndarray 快速入门
+    课程讲义
   </span>
   
 
@@ -500,7 +537,7 @@
         
   
   <span class="md-ellipsis">
-    Part 1. ndarray 快速入门
+    课程讲义
   </span>
   
 
@@ -698,9 +735,125 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ndarray_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的形状、分割与堆叠
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ndarray 的形状、分割与堆叠">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的形状的操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ndarray 的形状的操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      不改变原数组的操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      改变原数组的操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的分割
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray的堆叠
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    本节习题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-solution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    习题解析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1358,6 +1511,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ndarray_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的形状、分割与堆叠
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ndarray 的形状、分割与堆叠">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的形状的操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ndarray 的形状的操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      不改变原数组的操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      改变原数组的操作
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray 的分割
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ndarray_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ndarray的堆叠
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1401,6 +1620,7 @@
 <li><code>ndarray</code> 的基本函数与运算</li>
 <li><code>ndarray</code> 的索引、切片和迭代器</li>
 <li><code>ndarray</code> 的引用、视图和拷贝</li>
+<li><code>ndarray</code> 的形状、分割与堆叠</li>
 </ul>
 <pre><code class="language-python">import numpy as np
 </code></pre>
@@ -1429,18 +1649,9 @@ c = [(1, 2, 3), (4, 5, 6)]
        [4, 5, 6]])
 </code></pre>
 <p>这里有一个常用的错误是，这里的参数必须传入单个数组或者矢量，而不能传入多个值。错误示例：</p>
-<pre><code class="language-python">np.array(1, 2, 3, 4, 5, 6)
+<pre><code class="language-python"># np.array(1, 2, 3, 4, 5, 6) # error
 </code></pre>
-<pre><code>---------------------------------------------------------------------------
-
-TypeError                                 Traceback (most recent call last)
-
-Cell In[158], line 1
-----&gt; 1 np.array(1, 2, 3, 4, 5, 6)
-
-
-TypeError: array() takes from 1 to 2 positional arguments but 6 were given
-</code></pre>
+<p><img alt="array init error" src="../images/1-err-array_init.png" /></p>
 <h3 id="_3">通过函数批量初始化</h3>
 <p>在有些情况下，我们在初始化的时候并不知道想要初始化的值，或者想要将其初始化为某些特定的值。
 如果通过<code>for</code>循环遍历初始化显然有些太慢了，通过函数初始化则是一种更好的选择。</p>
@@ -1465,7 +1676,7 @@ TypeError: array() takes from 1 to 2 positional arguments but 6 were given
 <p><code>np.full</code>用于将<code>ndarray</code>初始化为全是<code>`fill_value</code> 的数组，它接收两个参数，分别为表示数组形状的元组和初始化的填充值<code>fill_value</code>。</p>
 <pre><code class="language-python">np.empty((1, 2))
 </code></pre>
-<pre><code>array([[0.e+000, 5.e-324]])
+<pre><code>array([[0., 0.]])
 </code></pre>
 <p><code>np.empty</code>用于只知道形状的数组的初始化，它创建的数组的值是未知的。</p>
 <pre><code class="language-python">np.arange(13)
@@ -1706,7 +1917,7 @@ a
 </code></pre>
 <pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
 </code></pre>
-<pre><code class="language-python">a [2]
+<pre><code class="language-python">a[2]
 </code></pre>
 <pre><code>np.int64(2)
 </code></pre>
@@ -1729,6 +1940,11 @@ a
 
 
 array([  0,   1, 100, 100, 100, 100,   6,   7,   8,   9,  10,  11])
+</code></pre>
+<p>其中我们也可以通过输入相同形状的bool数组进行切片。</p>
+<pre><code class="language-python">a[a % 2 == 0]
+</code></pre>
+<pre><code>array([  0, 100, 100, 100, 100,   6,   8,  10])
 </code></pre>
 <h3 id="_8">多维数组</h3>
 <p>多维数组的每个轴有一个索引，这些索引以元组的形式给出。</p>
@@ -1860,6 +2076,152 @@ b.flags.owndata: True
 </code></pre>
 <p>此时他们二者持有的是相互独立的数据。</p>
 <p><strong>注意:</strong> Numpy 的 MaskedArray 在拷贝方面有众多bug，不建议使用。（其实它哪个方面都有众多bug）</p>
+<h2 id="ndarray_9"><code>ndarray</code> 的形状、分割与堆叠</h2>
+<p>我们通常将 <code>ndarray.shape</code> 的返回值称作 <code>ndarray</code> 的形状，对于一个 n 维的数组，其形状为一个 n 个元素的元组，其中第 i 个元素表示该数组在第 i 维的宽度。</p>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+arr
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</code></pre>
+<h3 id="ndarray_10"><code>ndarray</code> 的形状的操作</h3>
+<p>我们可以通过<code>ndarray.shape</code>获取<code>ndarray</code>的形状，并且有多种改变其形状的操作。</p>
+<pre><code class="language-python">arr.shape
+</code></pre>
+<pre><code>(3, 4)
+</code></pre>
+<h4 id="_9">不改变原数组的操作</h4>
+<p><strong><code>ndarray.reshape</code></strong></p>
+<p>我们可以通过<code>ndarray.reshape</code>返回当前数组在某个形状下的视图，而不改变原数组的顺序，他们共享一份数据。</p>
+<pre><code class="language-python">arr1 = arr.reshape(2, 6)
+arr1
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3,  4,  5],
+       [ 6,  7,  8,  9, 10, 11]])
+</code></pre>
+<pre><code class="language-python">arr
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</code></pre>
+<pre><code class="language-python">print(&quot;arr.shape:&quot;, arr.shape)
+print(&quot;arr1.shape:&quot;, arr1.shape)
+print(&quot;arr1.flags.owndata:&quot;, arr1.flags.owndata)
+</code></pre>
+<pre><code>arr.shape: (3, 4)
+arr1.shape: (2, 6)
+arr1.flags.owndata: False
+</code></pre>
+<pre><code class="language-python">arr[1,2] = 1000
+arr1
+</code></pre>
+<pre><code>array([[   0,    1,    2,    3,    4,    5],
+       [1000,    7,    8,    9,   10,   11]])
+</code></pre>
+<p><strong><code>ndarray.ravel</code></strong></p>
+<p><code>ndarray.ravel</code> 可以将数组展平为一维数组，其中的默认顺序按照C数组的顺序，也就是越靠后的索引变化越快。<code>ndarray.ravel</code>返回的是视图，也就是说其与原数组共享一份数据。</p>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+arr1 = arr.ravel()
+arr1
+</code></pre>
+<pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
+</code></pre>
+<pre><code class="language-python">arr1.flags.owndata
+</code></pre>
+<pre><code>False
+</code></pre>
+<p><strong><code>ndarray.T</code></strong>
+对于二维数组，<code>ndarray.T</code>可以返回其转置的视图，其与原数组共享一份数据。</p>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+arr1 = arr.T
+arr1
+</code></pre>
+<pre><code>array([[ 0,  4,  8],
+       [ 1,  5,  9],
+       [ 2,  6, 10],
+       [ 3,  7, 11]])
+</code></pre>
+<pre><code class="language-python">arr1.flags.owndata
+</code></pre>
+<pre><code>False
+</code></pre>
+<h4 id="_10">改变原数组的操作</h4>
+<p><strong><code>ndarray.resize</code></strong></p>
+<p>我们可以通过 <code>ndarray.resize</code> 改变当前数组的形状。</p>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+arr.resize(2, 6)
+arr
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3,  4,  5],
+       [ 6,  7,  8,  9, 10, 11]])
+</code></pre>
+<h3 id="ndarray_11"><code>ndarray</code> 的分割</h3>
+<p>我们可以通过<code>np.array_split</code>将数组沿某个轴分割为几个部分。他需要输入三个参数，分别为要分割的数组、分割的位置和分割的坐标轴。</p>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+result = np.array_split(arr, 2, axis=1)
+result
+</code></pre>
+<pre><code>[array([[0, 1],
+        [4, 5],
+        [8, 9]]),
+ array([[ 2,  3],
+        [ 6,  7],
+        [10, 11]])]
+</code></pre>
+<pre><code class="language-python">arr = np.arange(12).reshape(3, 4)
+result = np.array_split(arr, 2, axis=0)
+result
+</code></pre>
+<pre><code>[array([[0, 1, 2, 3],
+        [4, 5, 6, 7]]),
+ array([[ 8,  9, 10, 11]])]
+</code></pre>
+<p>默认的分割并不会发生数据拷贝，分割后的数组并不拥有数据，他们持有相同的一份数据。</p>
+<pre><code class="language-python">result[0].flags.owndata
+</code></pre>
+<pre><code>False
+</code></pre>
+<pre><code class="language-python">result[0][1,2] = 1000
+arr
+</code></pre>
+<pre><code>array([[   0,    1,    2,    3],
+       [   4,    5, 1000,    7],
+       [   8,    9,   10,   11]])
+</code></pre>
+<h3 id="ndarray_12"><code>ndarray</code>的堆叠</h3>
+<p>我们可以通过<code>np.concatenate</code>进行数组的堆叠，他与原数组持有不同的数据，相当于执行了拷贝。它需要输入两个参数，分别是堆叠的参数列表和堆叠的坐标轴。这里需要注意的是，除了堆叠的坐标轴外其余坐标轴形状要求相等，这里不考虑“广播”特性。</p>
+<pre><code class="language-python">arr1 = np.arange(12).reshape(3, 4)
+arr2 = arr1.copy()
+arr = np.concatenate((arr1, arr2), axis=1)
+arr
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3,  0,  1,  2,  3],
+       [ 4,  5,  6,  7,  4,  5,  6,  7],
+       [ 8,  9, 10, 11,  8,  9, 10, 11]])
+</code></pre>
+<pre><code class="language-python">arr = np.concatenate((arr1, arr2), axis=0)
+arr
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</code></pre>
+<pre><code class="language-python">arr[1,2] = 1000
+arr1
+</code></pre>
+<pre><code>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11]])
+</code></pre>
+<pre><code class="language-python">print(&quot;arr.flags.owndata:&quot;, arr.flags.owndata)
+</code></pre>
+<pre><code>arr.flags.owndata: True
+</code></pre>
 
 
 
