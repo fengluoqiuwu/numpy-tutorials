@@ -1,6 +1,5 @@
 import argparse, os, subprocess, shutil, webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import pypandoc
 from tqdm import tqdm
 
 def clear_generate_files(folder_path):
