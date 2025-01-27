@@ -50,3 +50,4 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             bash /usr/local/bin/deploy.sh
+
