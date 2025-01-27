@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           source: ./site.tar.gz
-          target: /tmp/deployment
+          target: /tmp/deployment/numpy
 
       # 在服务器上运行部署脚本
       - name: Run deploy script on server
