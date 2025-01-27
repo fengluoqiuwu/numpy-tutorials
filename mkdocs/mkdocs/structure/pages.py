@@ -167,7 +167,7 @@ class Page(StructureItem):
                 base += '/'
             self.canonical_url = canonical_url = urljoin(base, self.url)
             self.abs_url = urlsplit(canonical_url).path
-            self.source_url = urljoin(base, self.file.src_path)
+            self.source_url = urljoin(base, urljoin("_sources", self.file.src_path))
         else:
             self.canonical_url = None
             self.abs_url = None
