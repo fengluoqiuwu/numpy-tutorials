@@ -19,7 +19,7 @@ jobs:
 
       # 压缩 _sources 子目录
       - name: Archive _sources folder
-        run: tar -czvf sources_.tar.gz ./sources_
+        run: tar -czvf _sources.tar.gz ./_sources
 
       # 将压缩文件上传到服务器
       - name: Copy html files to server
@@ -38,7 +38,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
-          source: ./sources_.tar.gz
+          source: ./_sources.tar.gz
           target: /tmp/deployment/numpy
 
       # 在服务器上运行部署脚本
