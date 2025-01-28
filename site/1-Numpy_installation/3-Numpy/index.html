@@ -1559,16 +1559,16 @@
 <p>在本节中，我将说明 Numpy 的安装与介绍。</p>
 <h2 id="_1">课程视频</h2>
 <h2 id="numpy">Numpy 安装</h2>
-<p>在虚拟环境中，可以运行下述命令安装Numpy。</p>
-<pre><code>pip install numpy
-</code></pre>
-<p>在 Conda环境中，可以运行下述命令安装Numpy。</p>
-<pre><code>conda install numpy
-</code></pre>
-<p>安装之后，运行命令检验是否安装成功.</p>
-<pre><code>python -c &quot;import numpy as np;print(np.__version__)&quot;
-</code></pre>
-<p>如果输出的版本是你期望的 Numpy 版本，说明安装成功。</p>
+<p>在虚拟环境中，可以运行下述命令安装Numpy。
+<div class="highlight"><pre><span></span><code>pip install numpy
+</code></pre></div>
+在 Conda环境中，可以运行下述命令安装Numpy。
+<div class="highlight"><pre><span></span><code>conda install numpy
+</code></pre></div>
+安装之后，运行命令检验是否安装成功.
+<div class="highlight"><pre><span></span><code>python -c &quot;import numpy as np;print(np.__version__)&quot;
+</code></pre></div>
+如果输出的版本是你期望的 Numpy 版本，说明安装成功。</p>
 <h2 id="numpy_1">Numpy 介绍</h2>
 <p>Numpy官网: https://numpy.org/
 Numpy文档: https://numpy.org/doc/stable/
@@ -1581,45 +1581,45 @@ NumPy 是许多数据分析、机器学习和科学计算库的基础。</p>
 <p>这使用 NumPy 时的标准导入方式。
 <code>np</code> 是对 NumPy 库的常用别名，几乎所有使用 NumPy 的 Python 代码都会采用这种方式。
 通过这种方式，你可以轻松调用 NumPy 中的函数和方法。</p>
-<pre><code class="language-python">import numpy as np
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</code></pre></div>
 <h4 id="2-ndarray">2. <code>ndarray</code>（多维数组）</h4>
 <p><code>ndarray</code> 是 NumPy 的核心数据结构，它是一个高效、固定大小的多维数组，支持批量的数学运算。</p>
-<pre><code class="language-python">arr = np.array([1, 2, 3])  # 创建一个一维数组
-print(arr)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># 创建一个一维数组</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</code></pre></div>
 <pre><code>[1 2 3]
 </code></pre>
 <h4 id="3-broadcasting">3. 广播（Broadcasting）</h4>
 <p>NumPy 支持数组形状不同但可以进行算术运算的功能，称为广播。</p>
-<pre><code class="language-python">a = np.array([1, 2, 3])
-b = np.array([10])
-print(a + b)  # 输出 [11, 12, 13]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># 输出 [11, 12, 13]</span>
+</code></pre></div>
 <pre><code>[11 12 13]
 </code></pre>
 <h4 id="4">4. 数学运算</h4>
 <p>NumPy 提供了大量的数学函数，可以对数组进行快速运算，包括加、减、乘、除等操作。</p>
-<pre><code class="language-python">a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-print(np.add(a, b))  # 输出 [5 7 9]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>  <span class="c1"># 输出 [5 7 9]</span>
+</code></pre></div>
 <pre><code>[5 7 9]
 </code></pre>
 <h4 id="5">5. 创建数组</h4>
 <p>NumPy 提供多种方式来创建数组，比如创建全 0 数组、全 1 数组或指定范围的数组。</p>
-<pre><code class="language-python">np.zeros((2, 3))  # 创建一个 2x3 的零数组
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># 创建一个 2x3 的零数组</span>
+</code></pre></div>
 <pre><code>array([[0., 0., 0.],
        [0., 0., 0.]])
 </code></pre>
-<pre><code class="language-python">np.ones((2, 3))   # 创建一个 2x3 的一数组
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>   <span class="c1"># 创建一个 2x3 的一数组</span>
+</code></pre></div>
 <pre><code>array([[1., 1., 1.],
        [1., 1., 1.]])
 </code></pre>
-<pre><code class="language-python">np.arange(0, 10, 2)  # 创建一个从 0 到 10 步长为 2 的数组
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 创建一个从 0 到 10 步长为 2 的数组</span>
+</code></pre></div>
 <pre><code>array([0, 2, 4, 6, 8])
 </code></pre>
 <h3 id="_3">应用场景</h3>
@@ -1737,6 +1737,8 @@ print(np.add(a, b))  # 输出 [5 7 9]
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

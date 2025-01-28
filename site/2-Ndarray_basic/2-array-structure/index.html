@@ -1397,45 +1397,45 @@
 <li>行主序(C 风格)和列主序(Fortran 风格)的区别</li>
 <li><code>ndarray</code>的内存结构</li>
 </ul>
-<pre><code class="language-python">import numpy as np
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</code></pre></div>
 <h2 id="_1">课程视频</h2>
 <h2 id="ndarray"><code>ndarray</code>的内存结构</h2>
-<pre><code class="language-python">arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]])</span>
+</code></pre></div>
 <p><code>ndarray</code>的一个实例由计算机内存中的一个连续的一维内存段（由数组本身或其他对象拥有）和一个索引方案组合而成。该索引方案将 N 个整数组成的索引数组映射到内存块中的某个位置，索引数组可以变化的范围由数组的形状(<code>shape</code>)属性定义，每个单位数据占用的字节数以及如何解释这些数据由数组的数据类型对象(<code>dtype</code>)属性定义。</p>
-<pre><code class="language-python">arr.shape
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
 <pre><code>(4, 3)
 </code></pre>
-<pre><code class="language-python">arr.dtype
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span>
+</code></pre></div>
 <pre><code>dtype('int64')
 </code></pre>
 <p><code>ndarray</code>的内存可以适应任何步长(stride)的索引方案，在该索引方案中，N 维索引数组对应于该   <code>ndarray</code>的内存段的偏移量(offset 以字节为单位)为：</p>
-<p>$$ n_{offset} = \sum^{N-1}_{k=0}s_kn_k $$</p>
-<p>其中 $n = (n_0, n_1, ..., n_{N-1})$ 为索引数组， $s = (s_0, s_1, ..., s_{N-1})$为步长数组。</p>
-<pre><code class="language-python">arr.strides
-</code></pre>
+<div class="arithmatex">\[ n_{offset} = \sum^{N-1}_{k=0}s_kn_k \]</div>
+<p>其中 <span class="arithmatex">\(n = (n_0, n_1, ..., n_{N-1})\)</span> 为索引数组， <span class="arithmatex">\(s = (s_0, s_1, ..., s_{N-1})\)</span>为步长数组。</p>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">strides</span>
+</code></pre></div>
 <pre><code>(24, 8)
 </code></pre>
 <p>列优先顺序(column-major order, 常在 Fortran 和 Matlab 中使用)和行优先顺序(row-major order, 常在 C 中使用) 只是步长方案的特定类型，他们对应于下述步长数组访问的内存：</p>
 <ul>
-<li>行优先顺序 (C 语言): $s_i = \prod^{N-1}_{k=i+1}shape[k]$</li>
-<li>列优先顺序 (Fortran 语言): $s_i = \prod^{j-1}_{k=0}shape[k]$</li>
+<li>行优先顺序 (C 语言): <span class="arithmatex">\(s_i = \prod^{N-1}_{k=i+1}shape[k]\)</span></li>
+<li>列优先顺序 (Fortran 语言): <span class="arithmatex">\(s_i = \prod^{j-1}_{k=0}shape[k]\)</span></li>
 </ul>
-<p>其中 $shape[j]$ 是数组在第 j 个维度的长度。</p>
-<pre><code class="language-python">np.array(arr, order='C').strides
-</code></pre>
+<p>其中 <span class="arithmatex">\(shape[j]\)</span> 是数组在第 j 个维度的长度。</p>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strides</span>
+</code></pre></div>
 <pre><code>(24, 8)
 </code></pre>
-<pre><code class="language-python">np.array(arr, order='F').strides
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strides</span>
+</code></pre></div>
 <pre><code>(8, 32)
 </code></pre>
 <h2 id="ndarray_1"><code>ndarray</code>的内存相关属性</h2>
-<pre><code class="language-python">arr
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span>
+</code></pre></div>
 <pre><code>array([[ 1,  2,  3],
        [ 4,  5,  6],
        [ 7,  8,  9],
@@ -1445,8 +1445,8 @@
 <ul>
 <li><code>ndarray.flags</code>:有关数组内存布局的信息。</li>
 </ul>
-<pre><code class="language-python">arr.flags
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">flags</span>
+</code></pre></div>
 <pre><code>  C_CONTIGUOUS : True
   F_CONTIGUOUS : False
   OWNDATA : True
@@ -1457,64 +1457,64 @@
 <ul>
 <li><code>ndarray.shape</code>:数组形状的元组。</li>
 </ul>
-<pre><code class="language-python">arr.shape
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div>
 <pre><code>(4, 3)
 </code></pre>
 <ul>
 <li><code>ndarray.strides</code>:数组每个维度的步长元组。</li>
 </ul>
-<pre><code class="language-python">arr.strides
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">strides</span>
+</code></pre></div>
 <pre><code>(24, 8)
 </code></pre>
 <ul>
 <li><code>ndarray.ndim</code>:数组的维数。</li>
 </ul>
-<pre><code class="language-python">arr.ndim
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
+</code></pre></div>
 <pre><code>2
 </code></pre>
 <ul>
 <li><code>ndarray.data</code>:指向数组内存块开头的 Python 缓冲区对象。</li>
 </ul>
-<pre><code class="language-python">arr.data
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">data</span>
+</code></pre></div>
 <pre><code>&lt;memory at 0x000002D6E7E87510&gt;
 </code></pre>
 <ul>
 <li><code>ndarray.size</code>:数组中元素的数量。</li>
 </ul>
-<pre><code class="language-python">arr.size
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">size</span>
+</code></pre></div>
 <pre><code>12
 </code></pre>
 <ul>
 <li><code>ndarray.itemsize</code>:一个数组元素的大小(byte)。</li>
 </ul>
-<pre><code class="language-python">arr.itemsize
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">itemsize</span>
+</code></pre></div>
 <pre><code>8
 </code></pre>
 <ul>
 <li><code>ndarray.nbytes</code>:数组占用内存的总字节数。</li>
 </ul>
-<pre><code class="language-python">arr.nbytes
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">nbytes</span>
+</code></pre></div>
 <pre><code>96
 </code></pre>
 <ul>
 <li><code>ndarray.base</code>:如果内存来自其他对象，则为基对象。</li>
 </ul>
-<pre><code class="language-python">repr(arr.base)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">repr</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+</code></pre></div>
 <pre><code>'None'
 </code></pre>
 <ul>
 <li><code>ndarray.dtype</code>:数组数据类型。</li>
 </ul>
-<pre><code class="language-python">arr.dtype
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span>
+</code></pre></div>
 <pre><code>dtype('int64')
 </code></pre>
 
@@ -1610,6 +1610,8 @@
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

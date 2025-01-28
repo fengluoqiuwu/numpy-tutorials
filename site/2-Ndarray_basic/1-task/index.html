@@ -1373,62 +1373,62 @@
 
 <h1 id="21-ndarray">习题2.1 ndarray 快速入门</h1>
 <p>这里是2.1节的习题。我们先在这里<code>import</code>所有需要用到的库。</p>
-<pre><code class="language-python">import numpy as np
-import pandas as pd
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
-arr1 = np.load(&quot;data/1-task-arr1.npy&quot;)
-arr2 = np.load(&quot;data/1-task-arr2.npy&quot;)
+<span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/1-task-arr1.npy&quot;</span><span class="p">)</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/1-task-arr2.npy&quot;</span><span class="p">)</span>
 
-iris_df = pd.read_csv(&quot;data/iris.csv&quot;)
-</code></pre>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/iris.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="_1">基础练习</h2>
 <ol>
 <li>请创建形状为<code>(3, 4, 5)</code>的全0，全1，全2 数组.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请创建长度为16的一维数组，其中数据为 24,22,20,18...,-6.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请获取数组<code>arr1</code>的维度、形状与类型.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请获取<code>arr2</code>的简略字符串与详细字符串.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请计算将<code>arr2</code>中的每个元素加100的平方根后的数组, 并求出它的最大值、均值与标准差.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请遍历<code>arr2</code>中的所有元素并存储到一个集合<code>set</code>中.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请获取一个数值为1 ~ 9 ,形状为 (3, 3)的数组，将其存储至<code>arr3</code>中.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请计算<code>arr2</code>与<code>arr3</code>在第一个轴上的堆叠，<code>arr2</code>在<code>arr3</code>之前.</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <h2 id="_2">实战演练</h2>
 <p>这里我们使用了经典的鸢尾花数据集（Iris Dataset）。已知数组<code>iris_arr</code>存储的是<code>iris_df</code>的特征，即其中第2-5列的数据(按照顺序)，数组<code>iris_index</code>存储的是这四列的名称，<code>iris_target</code>存储的是目标特征，即<code>species</code>列中的数据。请完成下述问题。</p>
-<pre><code class="language-python">iris_arr = iris_df.to_numpy()[:,1:5]
-iris_index = iris_df.columns[1:5].to_list().copy()
-iris_target = iris_df.to_numpy()[:, 5].copy()
-iris_df.head()
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">iris_arr</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">iris_index</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">iris_target</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[:,</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1508,19 +1508,19 @@ iris_df.head()
 <ol>
 <li>请计算每个特征的均值和方差</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请将<code>iris</code>数据标准化（均值为0，方差为1）</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+</code></pre></div>
 <ol>
 <li>请计算每个类别的平均特征值</li>
 </ol>
-<pre><code class="language-python"># 请在这里输入你的代码
-# 提示：可以通过np.unique(arr)获取所有不同的值
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 请在这里输入你的代码</span>
+<span class="c1"># 提示：可以通过np.unique(arr)获取所有不同的值</span>
+</code></pre></div>
 
 
 
@@ -1614,6 +1614,8 @@ iris_df.head()
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../javascripts/extra.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
