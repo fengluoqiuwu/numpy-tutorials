@@ -1,5 +1,10 @@
-import argparse, os, subprocess, shutil, webbrowser
+import argparse
+import os
+import shutil
+import subprocess
+import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
 from tqdm import tqdm
 
 def clear_generate_files(folder_path):
