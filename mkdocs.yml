@@ -56,6 +56,14 @@ nav:
       - 课程讲义: 2-Ndarray_basic/1-ndarray-quickstart.md
       - 本节习题: 2-Ndarray_basic/1-task.md
       - 习题解析: 2-Ndarray_basic/1-solution.md
+    - Part 2. 数组内存结构:
+      - 课程讲义: 2-Ndarray_basic/2-array-structure.md
+      - 本节习题: 2-Ndarray_basic/2-task.md
+      - 习题解析: 2-Ndarray_basic/2-solution.md
+    - Part 3. 数组创建:
+      - 课程讲义: 2-Ndarray_basic/3-array-creation.md
+      - 本节习题: 2-Ndarray_basic/3-task.md
+      - 习题解析: 2-Ndarray_basic/3-solution.md
   - 3 通用函数: # 3-Ufuncs/
     - 介绍: 3-Ufuncs/index.md
   - 4 数据类型: # 4-Dtypes/
